@@ -5,25 +5,25 @@ module.exports = (sequelize) => {
   sequelize.define('dog', {
     id:{
       type: DataTypes.UUID,
-      defaultValue: sequelize.UUIDV4,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    reference_image_id:{
-      type: DataTypes.NUMBER,
+    image_url:{
+      type: DataTypes.STRING,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     height:{
-      type: DataTypes.NUMBER
+      type: DataTypes.STRING,
     },
     weight:{
-      type: DataTypes.NUMBER
+      type: DataTypes.STRING,
     },
     life_span:{
-      type: DataTypes.NUMBER
+      type: DataTypes.STRING,
     },
   },
   { timestamps: false }

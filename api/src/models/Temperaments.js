@@ -1,20 +1,18 @@
 const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
   sequelize.define('temperaments', {
-    id:{
+    TempID: { 
       type: DataTypes.UUID,
-      defaultValue: sequelize.UUIDV4,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true, 
+      increment: true
+    },
+    name: {
+      type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
     },
-    name:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-
-  },
-  { timestamps: false }
-  );
+  }, { timestamps: false });
 };
