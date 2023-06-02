@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    image_url:{
+    image:{
       type: DataTypes.STRING,
     },
     name: {
@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
     },
     life_span:{
       type: DataTypes.STRING,
+    },
+    createdInDB:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     },
   },
   { timestamps: false }

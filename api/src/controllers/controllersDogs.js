@@ -11,7 +11,7 @@ const getDogsFromAPI = async () => {
       if (!data || !data.length) throw new Error (`error: esta mal`);
       const dogsFromAPI = await data.map(e => ({
         id: e.id,
-        image_url: e.image.url,
+        image: e.image.url,
         name: e.name,
         height: e.height.metric!='NaN' ? e.height.metric : e.height.imperial,
         weight: e.weight.metric.includes('NaN') ? '1 - 99' : e.weight.metric,
@@ -32,12 +32,12 @@ const getDogsFromAPI = async () => {
       const allDogs = await dogsFromDb?.map((e) => {
         return {
         id: e.id,
-        image_url: e.image.url,
+        image: e.image,
         name: e.name,
-        height: e.height.metric,
-        weight: e.weight.metric,
+        height: e.height,
+        weight: e.weight,
         life_span: e.life_span,
-        temperaments: e.temperament
+        temperaments: e.temperaments?.map((temp) => temp.name).join(', '),
         }
       });
       return allDogs
@@ -109,17 +109,17 @@ const getDogsByName = async (req, res) => {
 };
 
 
-const createDog = async(name, height, weight, life_span, tempID, image_url) =>{
+const createDog = async(name, height, weight, life_span, temperaments, image) =>{
     
   const newDog = await Dog.create({
       name,
       height,
       weight,
       life_span,
-      image_url
+      image
   })
 
-  await newDog.setTemperaments(tempID);
+  await newDog.setTemperaments(temperaments);
 
   const createdDog = await Dog.findByPk(newDog.id, {
       include: {
@@ -136,13 +136,13 @@ const createDog = async(name, height, weight, life_span, tempID, image_url) =>{
 
 
 const postDog = async (req, res) => {
-  const {name, height, weight, life_span, tempID, image_url} = req.body;
-  if (!name || (!height) || (!weight) || !tempID){
+  const {name, height, weight, life_span, temperaments, image} = req.body;
+  if (!name || !height || !weight || !temperaments){
       throw new Error({error:'MANDA TODOS LOS PARAMETROS'});
   }
   
   try {
-      const newDog = await createDog(name, height, weight, life_span, tempID, image_url)
+      const newDog = await createDog(name, height, weight, life_span, temperaments, image)
       console.log('se posteo el perro');
       return res.status(200).json(newDog);
   }

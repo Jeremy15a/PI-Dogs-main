@@ -1,0 +1,11 @@
+.uls{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+ .lisa {
+    list-style:none;
+    margin: 3px;
+ }
