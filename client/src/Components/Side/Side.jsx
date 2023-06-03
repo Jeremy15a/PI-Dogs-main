@@ -40,6 +40,7 @@ const Side = () => {
           <li>
             <h2>Filter by Origin</h2>
             <select name="Filter by Origin" id="FilterByOrigin" onChange={handleFilterByOrigin}> 
+              <option value="">Filter by Origin</option>
               <option value="DATABASE">DATABASE</option>
               <option value="API">API</option>
             </select>
@@ -47,6 +48,7 @@ const Side = () => {
           <li>
             <h2>Order by Name</h2>
             <select name="Order by Name" id="OrderByName" onChange={handleOrderByName}>
+              <option value="">Order by Name</option>
               <option value="A - Z">A - Z</option>
               <option value="Z - A">Z - A</option>
             </select>
@@ -54,6 +56,7 @@ const Side = () => {
           <li>
             <h2>Order by Weight</h2>
             <select name="Order by Weight" id="OrderByWeight" onChange={handleOrderByWeight}>
+              <option value="">Order by Weight</option>
               <option value="ASCENDING">ASCENDING</option>
               <option value="DESCENDING">DESCENDING</option>
             </select>

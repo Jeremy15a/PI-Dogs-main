@@ -3,6 +3,7 @@ import Cards from '../Cards/Cards'
 import Side from '../Side/Side';
 import NavBar from '../NavBar/NavBar'
 import Pagination from '../Pagination/Pagination';
+import { NavLink } from 'react-router-dom';
 
 const HomePage= () => {
 
@@ -10,7 +11,9 @@ const HomePage= () => {
         <div className={style.super}>
             <header className={style.head}>
                 <NavBar></NavBar>
+                <NavLink to= '/CreateDog'>
                 <button>Create a breed</button>
+                </NavLink>
             </header>
             <aside className={style.side}>
                 <Side></Side>

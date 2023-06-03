@@ -27,7 +27,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_DESCRIPTION:
       return {
         ...state,
-        description: payload,
+        description:payload
       };
 
     case FILTER_BY_NAME:
