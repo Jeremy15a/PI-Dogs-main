@@ -7,7 +7,7 @@ function Card({ id, name, weight, image, temperaments }) {
       <div className={style.body}></div>
       <div className={style.img}>
         <NavLink to={`/detail/${id}`}>
-          <img className={style.imagenes} src={image} alt={name} />
+          <img className={style.imagenes} src={image} alt={name} title='Click to details'/>
         </NavLink>
       </div>
       <div className={style.specs}>

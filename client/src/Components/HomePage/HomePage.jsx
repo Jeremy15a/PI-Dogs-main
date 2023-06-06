@@ -4,132 +4,46 @@ import Side from '../Side/Side';
 import NavBar from '../NavBar/NavBar'
 import Pagination from '../Pagination/Pagination';
 import { NavLink } from 'react-router-dom';
+import { getAllDogs } from '../../Redux/actions';
+import { useDispatch } from 'react-redux';
+import homeIcon from '../../assets/white-home-icon-png-21.jpg';
 
-const HomePage= () => {
-
+const HomePage = () => {
+    const dispatch = useDispatch();
+  
+    const handleHomeButtonClick = () => {
+      dispatch(getAllDogs());
+    };
+  
     return (
-        <div className={style.super}>
-            <header className={style.head}>
-                <NavBar></NavBar>
-                <NavLink to= '/CreateDog'>
-                <button>Create a breed</button>
-                </NavLink>
-            </header>
-            <aside className={style.side}>
-                <Side></Side>
-            </aside>
-            <div className={style.body}> 
-                <Cards></Cards>
-            </div>
-            <footer className={style.foot}>
-                <Pagination></Pagination>
-            </footer>
+      <div className={style.super}>
+        <header className={style.head}>
+          <div className={style.homeButtonWrapper}>
+          <button className={style.homeButton} onClick={handleHomeButtonClick}>
+            <img src={homeIcon} className={style.homeIcon} alt="Home Icon" />
+            <span>The Dog Breed Finder</span>
+            </button>
+          </div>
+          <div className={style.navbar}>
+            <NavBar></NavBar>
+          </div>
+          <div className={style.createButtonWrapper}>
+            <NavLink to="/CreateDog">
+              <button className={style.createButton}>Create a breed</button>
+            </NavLink>
+          </div>
+        </header>
+        <aside className={style.side}>
+          <Side></Side>
+        </aside>
+        <div className={style.body}>
+          <Cards></Cards>
         </div>
-
-)
-};
+        <footer className={style.foot}>
+          <Pagination></Pagination>
+        </footer>
+      </div>
+    );
+  };
 
 export default HomePage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const allDogs = useSelector((e) => e.allDogs); 
-// const dogs = useSelector((e) => e.dogs);
-
-// const [currentPage, setCurrentPage] = useState(1);
-// const dogsPage = 8;
-// const indexOfLastDogs = currentPage * dogsPage;
-// const indexOfFirstDogs = indexOfLastDogs - dogsPage;
-
-// const paginado = (pageNumber) => {
-//   setCurrentPage(pageNumber);
-// };
-// useEffect(() => {
-//   setCurrentPage(1);
-// }, [dispatch]);
-
-// const mostrarCards = (dogs) => {
-//     const currentDogs = dogs.slice(indexOfFirstDogs, indexOfLastDogs);
-//     return (
-//       <div>
-//         <div className="paginado2">
-//           {currentDogs.length === 0 && currentDogs}
-//           {currentDogs.map((e) => (
-//             <div key={e.id}>
-//               <Card
-//                 name={e.name}
-//                 image={e.image}
-//                 temperament={e.temperament}
-//                 weight={e.weight}
-//               />
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     );
-//   };

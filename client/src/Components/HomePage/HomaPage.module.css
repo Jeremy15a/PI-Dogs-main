@@ -1,27 +1,30 @@
-
 .super {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    height: 100vh;
-    width: 100vw;
-    }
-    
-    .head { grid-area: 1 / 1 / 2 / 9; }
-    .side { grid-area: 2 / 1 / 13 / 2; }
-    .foot { grid-area: 12 / 2 / 13 / 9; }
-    .body { grid-area: 2 / 2 / 12 / 9; }
-
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 100vh;
+  width: 100vw;
+}
 
 .head {
-  background-color: aqua;
+  grid-area: 1 / 1 / 2 / 9;
 }
 
 .side {
-  background-color: red;
+  grid-area: 2 / 1 / 13 / 2;
 }
+
+.foot {
+  grid-area: 12 / 2 / 13 / 9;
+}
+
+.body {
+  grid-area: 2 / 2 / 12 / 9;
+}
+
+
 
 .foot {
   background-color: blue;
@@ -37,4 +40,87 @@
   align-items: center;
   align-content: center;
   justify-content: center;
+}
+
+.head {
+  background-color: aqua;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.createButtonWrapper {
+  margin-right: 30px;
+}
+
+.createButton {
+  background-color: #f44336;
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.createButton:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+.createButton:active {
+  background-color: #c62828;
+  transform: scale(0.95);
+}
+
+.navbar {
+  margin-left: 80px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.homeButtonWrapper {
+  margin-left: 30px;
+}
+
+.homeButton {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.homeButton span {
+  margin-right: 5px;
+}
+
+.homeIcon {
+  height: 30px;
+  width: auto;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+.homeButton:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+.homeButton:active {
+  background-color: #c62828;
+  transform: scale(0.95);
 }

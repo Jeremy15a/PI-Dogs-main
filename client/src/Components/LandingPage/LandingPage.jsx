@@ -4,11 +4,16 @@ import { NavLink } from "react-router-dom";
 const LandingPage= () => {
     return (
         <div className={style.background}>
-            <h1 className={style.welcome}>! WELCOME !</h1>
-            <NavLink to='/home'>
-                <button>HOME</button>
-            </NavLink>
-            <h2>Dog breed finder</h2>
+            <div className={style.containerWrapper}>
+                <div className={style.container}>
+                    <h1 className={style.welcome}>¡ WELCOME !</h1>
+                    <h2 className={style.finder}>Dog breed finder</h2>
+                    <br />
+                    <NavLink to='/home'>
+                        <button className={style.homeButton}>HOME</button>
+                    </NavLink>
+                </div>
+            </div>
         </div>
     )
 };

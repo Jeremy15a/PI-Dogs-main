@@ -34,39 +34,39 @@ const Side = () => {
     }, [temperaments]);
 
   return (
-    <div className={style.Side}>
-      <div>
-        <ul>
-          <li>
-            <h2>Filter by Origin</h2>
-            <select name="Filter by Origin" id="FilterByOrigin" onChange={handleFilterByOrigin}> 
-              <option value="">Filter by Origin</option>
-              <option value="DATABASE">DATABASE</option>
-              <option value="API">API</option>
+    <div className={style.side}>
+      <div className={style.container}> 
+        <ul className={style.uls}>
+          <li className={style.li1}>
+            <h2 className={style.h21}>Filter by Origin</h2>
+            <select name="Filter by Origin" id="FilterByOrigin" onChange={handleFilterByOrigin} className={style.select1} > 
+              <option className={style.option1} value="">Filter by Origin</option>
+              <option className={style.option1} value="DATABASE">DATABASE</option>
+              <option className={style.option1} value="API">API</option>
             </select>
           </li>
-          <li>
-            <h2>Order by Name</h2>
-            <select name="Order by Name" id="OrderByName" onChange={handleOrderByName}>
-              <option value="">Order by Name</option>
-              <option value="A - Z">A - Z</option>
-              <option value="Z - A">Z - A</option>
+          <li className={style.li2}>
+            <h2 className={style.h22}>Order by Name</h2>
+            <select name="Order by Name" id="OrderByName" onChange={handleOrderByName} className={style.select2}>
+              <option className={style.option2} value="">Order by Name</option>
+              <option className={style.option2} value="A - Z">A - Z</option>
+              <option className={style.option2} value="Z - A">Z - A</option>
             </select>
           </li>
-          <li>
-            <h2>Order by Weight</h2>
-            <select name="Order by Weight" id="OrderByWeight" onChange={handleOrderByWeight}>
-              <option value="">Order by Weight</option>
-              <option value="ASCENDING">ASCENDING</option>
-              <option value="DESCENDING">DESCENDING</option>
+          <li className={style.li3}>
+            <h2 className={style.h23}>Order by Weight</h2>
+            <select name="Order by Weight" id="OrderByWeight" onChange={handleOrderByWeight} className={style.select3}>
+              <option className={style.option3} value="">Order by Weight</option>
+              <option className={style.option3} value="ASCENDING">ASCENDING</option>
+              <option className={style.option3} value="DESCENDING">DESCENDING</option>
             </select>
           </li>
-          <li>
-            <h2>Filter by Temperament</h2>
-            <select name="Filter by Temperament" id="FilterByTemperament" onChange={handleFilterByTemperament}>
-              <option value="all">All Temperaments</option>
+          <li className={style.li4}>
+            <h2 className={style.h24}>Filter by Temperament</h2>
+            <select name="Filter by Temperament" id="FilterByTemperament" onChange={handleFilterByTemperament} className={style.select4}>
+              <option className={style.option4} value="all">All Temperaments</option>
               {temperamentOptions.map((temperament, index) => (
-                <option value={temperament} key={index}>
+                <option className={style.option4} value={temperament} key={index}>
                   {temperament}
                 </option>
               ))}
@@ -79,7 +79,3 @@ const Side = () => {
 };
 
 export default Side;
-
-/*
-{ <select name="Filter by Temperament" id="FilterByTemperament" onChange={handleFilterByTemperament}>
-</select> }*/

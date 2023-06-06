@@ -1,5 +1,98 @@
-
-.Side{
-    color: whitesmoke;
-
-}
+.side {
+    background-color: red;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  .uls {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .li1,
+  .li2,
+  .li3,
+  .li4 {
+    margin-bottom: 20px;
+  }
+  
+  .h21,
+  .h22,
+  .h23,
+  .h24 {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .select1,
+  .select2,
+  .select3,
+  .select4 {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif; /* Agregada la fuente 'Montserrat' */
+  }
+  
+  .select1::after,
+  .select2::after,
+  .select3::after,
+  .select4::after {
+    content: "\25BC";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #777;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+  }
+  
+  .select1:focus,
+  .select2:focus,
+  .select3:focus,
+  .select4:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+    background-color: #fff;
+  }
+  
+  .select1:hover,
+  .select2:hover,
+  .select3:hover,
+  .select4:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .select1:hover::after,
+  .select2:hover::after,
+  .select3:hover::after,
+  .select4:hover::after {
+    color: #555;
+  }
+  
+  .select1:focus::after,
+  .select2:focus::after,
+  .select3:focus::after,
+  .select4:focus::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  
+  
+  
+  
