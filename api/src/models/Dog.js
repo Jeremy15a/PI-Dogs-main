@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -16,12 +17,15 @@ module.exports = (sequelize) => {
     },
     height:{
       type: DataTypes.STRING,
+      allowNull: false,
     },
     weight:{
       type: DataTypes.STRING,
+      allowNull: false,
     },
     life_span:{
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   { timestamps: false }

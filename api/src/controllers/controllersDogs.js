@@ -2,7 +2,7 @@ require('dotenv').config();
 const {
     YOUR_API_KEY,
   } = process.env;
-let API = `https://api.thedogapi.com/v1/breeds?api_key=${YOUR_API_KEY}`
+const API = `https://api.thedogapi.com/v1/breeds?api_key=${YOUR_API_KEY}`
 const axios = require('axios')
 const { Dog, Temperaments } = require('../db');
 
@@ -12,15 +12,13 @@ const getDogsFromAPI = async () => {
 
   const dogsFromAPI = [];
   data.forEach((e) => {
-    const height = e.height.metric !== "NaN" ? e.height.metric : e.height.imperial;
-    const weight = e.weight.metric.includes("NaN") ? "1 - 99" : e.weight.metric;
 
     dogsFromAPI.push({
       id: e.id,
       image: e.image.url,
       name: e.name,
-      height,
-      weight,
+      height: e.height.metric,
+      weight: e.weight.metric,
       life_span: e.life_span,
       temperaments: e.temperament,
     });
@@ -35,7 +33,7 @@ const getDogsFromAPI = async () => {
             model: Temperaments,
             atributes: ['name'],
             through: {
-                atributes: ['id', 'name'],
+                atributes: ['temperaments', 'name'],
               }, } });
       const allDogs = await dogsFromDb?.map((e) => {
         return {
@@ -81,16 +79,16 @@ const getDogsByName = async (req, res) => {
         doggy.name.toLowerCase().includes(name.toLowerCase())
       );
 
-      if (!dogByName.length) throw new Error("No tenemos disponible la receta");
+      if (!dogByName.length) throw new Error("No tenemos disponible el perro");
 
-      console.log("si está el perrito");
+      console.log("si está el perro by name");
       res.status(200).json(dogByName);
     } else {
       console.log("te traemos todo desde by Name");
       res.status(200).json(allDogs);
     }
   } catch (error) {
-    console.log("no tenemos ese perrito");
+    console.log("no tenemos esta el perro by name");
     res.status(400).json(error.message);
   }
 };
@@ -101,18 +99,18 @@ const getDogById = async (req, res) => {
     const allDogs = await getAllInfoDogs();
 
     if (isNaN(id)) {
-      const dogNan = allDogs.find((e) => e.id === id);
-      dogNan
-        ? res.status(200).json(dogNan)
-        : res.status(404).send({ error: "No se encontró perrote con ese id" });
+      const dogDb = allDogs.find((e) => e.id === id);
+      dogDb
+        ? res.status(200).json(dogDb)
+        : res.status(404).send({ error: "No se encontró perro con ese id en Db" });
     } else {
-      const dogNumb = allDogs.find((el) => el.id === Number(id));
-      dogNumb
-        ? res.status(200).json(dogNumb)
-        : res.status(404).send({ error: "No se encontró perrin con ese id" });
+      const dogApi = allDogs.find((el) => el.id === Number(id));
+      dogApi
+        ? res.status(200).json(dogApi)
+        : res.status(404).send({ error: "No se encontró perro con ese id en API" });
     }
   } catch (error) {
-    console.log("No se encontró perrin con ese id");
+    console.log("No se encontró perro con ese id");
     res.status(400).json(error.message);
   }
 };
@@ -134,9 +132,6 @@ const createDog = async(name, height, weight, life_span, temperaments, image) =>
       include: {
           model: Temperaments,
           attributes: ['name'],
-          through: {
-              attributes: []
-          }
       }
   });
 
@@ -146,7 +141,7 @@ const createDog = async(name, height, weight, life_span, temperaments, image) =>
 
 const postDog = async (req, res) => {
   const {name, height, weight, life_span, temperaments, image} = req.body;
-  if (!name || !height || !weight || !temperaments){
+  if (!name || !height || !weight || !temperaments || !life_span || !image){
       throw new Error({error:'MANDA TODOS LOS PARAMETROS'});
   }
   

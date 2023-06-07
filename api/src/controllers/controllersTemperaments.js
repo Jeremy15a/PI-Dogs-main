@@ -2,7 +2,7 @@ require('dotenv').config();
 const {
     YOUR_API_KEY,
   } = process.env;
-let API = `https://api.thedogapi.com/v1/breeds?api_key=${YOUR_API_KEY}`
+const API = `https://api.thedogapi.com/v1/breeds?api_key=${YOUR_API_KEY}`
 const axios = require('axios')
 const { Temperaments } = require('../db');
 
@@ -28,7 +28,7 @@ const getTemperaments = async (req, res) => {
       res.status(200).json(totalTemp);
     } catch (error) {
       console.log("Error al obtener los temperamentos", error);
-      res.status(400).json(error.message);
+      res.status(400).json(error);
     }
   };
   
