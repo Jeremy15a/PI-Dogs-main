@@ -1,22 +1,25 @@
-import style from './Card.module.css'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from './Card.module.css';
 
 function Card({ id, name, weight, image, temperaments }) {
   return (
-    <div className={style.bigContainer}>
-      <div className={style.body}></div>
-      <div className={style.img}>
+    <div className={styles.card}>
+      <div className={styles.body}></div>
+      <div className={styles.image}>
         <NavLink to={`/detail/${id}`}>
-          <img className={style.imagenes} src={image} alt={name} title='Click to details'/>
+          <img className={styles.imageContent} src={image} alt={name} title='Click to details' />
         </NavLink>
       </div>
-      <div className={style.specs}>
-        <h2>{name}</h2>
-        <h2>Weight: {weight} kg</h2>
-        <h2>Temperaments: {temperaments}</h2>
+      <div className={styles.details}>
+        <h2 className={styles.name}>{name}</h2>
+        <div className={styles.info}>
+          <p className={styles.weight}>Weight: {weight} kg</p>
+          <p className={styles.temperaments}>Temperaments: {temperaments}</p>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Card
+export default Card;

@@ -6,28 +6,33 @@
   grid-row-gap: 0px;
   height: 100vh;
   width: 100vw;
+  background-color: #382E2A;
+  overflow: hidden;
 }
 
 .head {
   grid-area: 1 / 1 / 2 / 9;
+  background-color: #382E2A;
 }
 
 .side {
   grid-area: 2 / 1 / 13 / 2;
+  background-color: #EDC2B2;
 }
 
 .foot {
   grid-area: 12 / 2 / 13 / 9;
+  background-color: #8C543F;
 }
 
 .body {
   grid-area: 2 / 2 / 12 / 9;
+  background-color: #fff
 }
 
 
 
 .foot {
-  background-color: blue;
   color: white;
   display: flex;
   flex-direction: row;
@@ -36,14 +41,14 @@
 
 .body {
   display: flex;
-  background-color: violet;
   align-items: center;
   align-content: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .head {
-  background-color: aqua;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -52,11 +57,11 @@
 }
 
 .createButtonWrapper {
-  margin-right: 30px;
+  margin-right: 55px;
 }
 
 .createButton {
-  background-color: #f44336;
+  background-color: #F08F6C;
   color: white;
   padding: 16px 32px;
   border: none;
@@ -70,12 +75,12 @@
 }
 
 .createButton:hover {
-  background-color: #e53935;
+  background-color: #EDC2B2;
   transform: scale(1.05);
 }
 
 .createButton:active {
-  background-color: #c62828;
+  background-color: #8C543F;
   transform: scale(0.95);
 }
 
@@ -87,11 +92,11 @@
 }
 
 .homeButtonWrapper {
-  margin-left: 30px;
+  margin-left: 38px;
 }
 
 .homeButton {
-  background-color: #f44336;
+  background-color: #F08F6C;
   color: white;
   padding: 12px 15px;
   border: none;
@@ -116,11 +121,25 @@
 }
 
 .homeButton:hover {
-  background-color: #e53935;
+  background-color: #EDC2B2;
   transform: scale(1.05);
 }
 
 .homeButton:active {
-  background-color: #c62828;
+  background-color: #8C543F;
   transform: scale(0.95);
+}
+
+.createButtonLink,
+.homeButtonLink {
+  text-decoration: none;
+}
+
+.createButtonWrapper a {
+  text-decoration: none; 
+  color: inherit;
+}
+
+.createButtonWrapper a:hover {
+  text-decoration: none;
 }

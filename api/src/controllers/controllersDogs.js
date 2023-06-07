@@ -7,19 +7,27 @@ const axios = require('axios')
 const { Dog, Temperaments } = require('../db');
 
 const getDogsFromAPI = async () => {
-      const { data } =  await axios(API)
-      if (!data || !data.length) throw new Error (`error: esta mal`);
-      const dogsFromAPI = await data.map(e => ({
-        id: e.id,
-        image: e.image.url,
-        name: e.name,
-        height: e.height.metric!='NaN' ? e.height.metric : e.height.imperial,
-        weight: e.weight.metric.includes('NaN') ? '1 - 99' : e.weight.metric,
-        life_span: e.life_span,
-        temperaments: e.temperament
-      }));
-      return dogsFromAPI
-  };
+  const { data } = await axios(API);
+  if (!data || !data.length) throw new Error("Error: los datos son incorrectos");
+
+  const dogsFromAPI = [];
+  data.forEach((e) => {
+    const height = e.height.metric !== "NaN" ? e.height.metric : e.height.imperial;
+    const weight = e.weight.metric.includes("NaN") ? "1 - 99" : e.weight.metric;
+
+    dogsFromAPI.push({
+      id: e.id,
+      image: e.image.url,
+      name: e.name,
+      height,
+      weight,
+      life_span: e.life_span,
+      temperaments: e.temperament,
+    });
+  });
+
+  return dogsFromAPI;
+};
 
   const getDogsFromDb = async () => { 
       const dogsFromDb = await Dog.findAll({ 
@@ -64,48 +72,49 @@ const getAllDogs = async (req, res) => {
 };
 
 const getDogsByName = async (req, res) => {
-    try {
-      const { name } = req.query;
-      const allDogs = await getAllInfoDogs();
+  try {
+    const { name } = req.query;
+    const allDogs = await getAllInfoDogs();
 
-      if (name) {
-        const dogByName = allDogs.filter(doggy =>
-            doggy.name.toLowerCase().includes(name.toLowerCase())
-        );
-      if(!dogByName.length) throw new Error({error:"No tenemos disponible la receta"});
-      console.log('si esta el perrito');
+    if (name) {
+      const dogByName = allDogs.filter((doggy) =>
+        doggy.name.toLowerCase().includes(name.toLowerCase())
+      );
+
+      if (!dogByName.length) throw new Error("No tenemos disponible la receta");
+
+      console.log("si está el perrito");
       res.status(200).json(dogByName);
-      } 
-      else{
-        console.log('te traemos todo desde by Name');
-        res.status(200).json(allDogs);
-      }
-    } catch (error) {
-        console.log('no tenemos ese perrito');
-      res.status(400).json( error.message );
+    } else {
+      console.log("te traemos todo desde by Name");
+      res.status(200).json(allDogs);
     }
-  };
+  } catch (error) {
+    console.log("no tenemos ese perrito");
+    res.status(400).json(error.message);
+  }
+};
 
-  const getDogById = async (req, res) =>{
-    try {
-        const {id} = req.params;
-        const allDogs = await getAllInfoDogs();
-        if(isNaN(id)){
-            let dogNan = allDogs.find((e) => e.id === id);
-            dogNan
-            ? res.status(200).json(dogNan)
-            : res.status(404).send({error: 'No se encontró perrote con ese id'});
-        } else{
-            let dogNumb = allDogs.find((el) => el.id === Number(id))
-            dogNumb
-            ? res.status(200).json(dogNumb)
-            : res.status(404).send({error: 'No se encontró perrin con ese id'})
-        }
+const getDogById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const allDogs = await getAllInfoDogs();
 
-    } catch (error) {
-        console.log('No se encontró perrin con ese id');
-        res.status(400).json(error.message);
+    if (isNaN(id)) {
+      const dogNan = allDogs.find((e) => e.id === id);
+      dogNan
+        ? res.status(200).json(dogNan)
+        : res.status(404).send({ error: "No se encontró perrote con ese id" });
+    } else {
+      const dogNumb = allDogs.find((el) => el.id === Number(id));
+      dogNumb
+        ? res.status(200).json(dogNumb)
+        : res.status(404).send({ error: "No se encontró perrin con ese id" });
     }
+  } catch (error) {
+    console.log("No se encontró perrin con ese id");
+    res.status(400).json(error.message);
+  }
 };
 
 
@@ -158,27 +167,3 @@ module.exports = {
     getDogById,
     postDog,
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

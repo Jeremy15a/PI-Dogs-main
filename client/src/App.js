@@ -6,7 +6,6 @@ import CreateDog from './Components/CreateDog/CreateDogs.jsx'
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
-
   return (
     <div className="App">
       <Routes>
@@ -20,4 +19,3 @@ function App() {
 }
 
 export default App;
-

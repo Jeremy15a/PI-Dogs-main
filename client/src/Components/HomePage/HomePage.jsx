@@ -14,6 +14,7 @@ const HomePage = () => {
     const handleHomeButtonClick = () => {
       dispatch(getAllDogs());
     };
+
   
     return (
       <div className={style.super}>
@@ -29,7 +30,7 @@ const HomePage = () => {
           </div>
           <div className={style.createButtonWrapper}>
             <NavLink to="/CreateDog">
-              <button className={style.createButton}>Create a breed</button>
+              <button className={style.createButton} >Create a breed</button>
             </NavLink>
           </div>
         </header>
@@ -46,4 +47,4 @@ const HomePage = () => {
     );
   };
 
-export default HomePage
+export default HomePage;

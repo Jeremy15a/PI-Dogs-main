@@ -1,9 +1,22 @@
 import {SET_CURRENT_PAGE, FILTER_BY_NAME, GET_ALL_DOGS, GET_DESCRIPTION, GET_DOGS_BY_NAME, GET_ALL_TEMPERAMENT, FILTER_TEMPERAMENT, FILTER_ORIGIN, ORDER_BY_NAME, ORDER_BY_WEIGHT, POST_DOG } from './actions_types';
 import axios from "axios";
-
 export const getAllDogs = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const { dogs } = getState();
+    if (dogs.length > 0) {
+      dispatch({
+        type: GET_ALL_DOGS,
+        payload: dogs
+      });
+    }
+    
+    
     try {
+      dispatch({
+        type: GET_ALL_DOGS,
+        payload: []
+      });
+
       const response = await axios.get("http://localhost:3001/dogs");
       const dogs = response.data;
       dispatch({

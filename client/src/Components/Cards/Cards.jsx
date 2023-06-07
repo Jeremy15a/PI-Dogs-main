@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../Redux/actions';
 import Card from '../Card/Card';
 import style from './Cards.module.css';
+import Loading from '../Loading/Loading';
 
 function Cards() {
   const dispatch = useDispatch();
@@ -32,12 +33,10 @@ function Cards() {
           />
         ))
       ) : (
-        <p>No se encontraron perros</p>
+        <Loading/>
       )}
     </div>
   );
 }
 
 export default Cards;
-
-

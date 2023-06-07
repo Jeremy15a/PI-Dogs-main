@@ -9,3 +9,4 @@ export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 export const POST_DOG = "POST_DOG" ;
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const CLEAR_DOG_CACHE = "CLEAR_DOG_CACHE";

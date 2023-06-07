@@ -1,71 +1,76 @@
-.bigContainer {
-    display: grid;
-    grid-template-columns: 10px 1fr 10px;
-    grid-template-rows: 10px 2fr 1fr 10px;
-    grid-column-gap: 0;
-    grid-row-gap: 10px;
-    height: 325px;
-    width: 300px;
-    margin: 30px;
-    margin-right: 20px;
-  }
-  
-  .body { grid-area: 1 / 1 / 5 / 4; }
-  .img { grid-area: 2 / 2 / 3 / 3; }
-  .specs { grid-area: 3 / 2 / 4 / 3; }
-  
-  
-  
-  
-  .body{
-      background-color: orangered;
-      border-radius: 5%;
-      border: 5px solid orangered;
-      /* display: flex; 
-      justify-content: center; 
-      align-items: center; */
-    }
-    
-    
-    
-
-    .specs {
-        color: azure;
-    width: 100%;
-    height: 100%;
-    background-color: brown;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.card {
+  display: grid;
+  grid-template-columns: 10px 1fr 10px;
+  grid-template-rows: 10px 3fr 1fr 10px;
+  grid-gap: 7px;
+  height: 350px;
+  width: 325px;
+  margin-top: 30px;
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease;
 }
 
-h2{
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    font-size: small;
+.card:hover {
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.6);
 }
 
-  .img {
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .img:hover .imagenes {
-    cursor: pointer;
-    transform: scale(1.2);
-  }
-  
-  .imagenes {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.3s;
-    transform-origin: center center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: help;
-  }
-  
+.body {
+  grid-area: 1 / 1 / 5 / 4;
+  background-color: #BA988C;
+}
+
+.image {
+  grid-area: 2 / 2 / 3 / 3;
+  overflow: hidden;
+  position: relative;
+}
+
+.imageContent {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s;
+  transform-origin: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.image:hover .imageContent {
+  transform: scale(1.2);
+}
+
+.details {
+  grid-area: 3 / 2 / 4 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #8C543F;
+  color: #FFF;
+  padding: 10px;
+  text-align: center;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: -6px;
+}
+
+.info {
+  width: 100%;
+  text-align: center;
+}
+
+.weight,
+.temperaments {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}

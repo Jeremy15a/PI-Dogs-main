@@ -5,7 +5,6 @@ const initialState = {
   temperaments: [],
   description: [],
   filteredDogs: [],
-  orderBy: null,
   currentPage: 1,
 };
 
@@ -47,48 +46,50 @@ const reducer = (state = initialState, { type, payload }) => {
         filteredDogs: payload,
       };
 
-    case FILTER_TEMPERAMENT:
-      const filterValue = payload === "all" ? undefined : payload.split(",");
-      const dogsFilter = state.dogs.filter((dog) => {
-        return (
-          !filterValue ||
-          (dog.temperaments &&
-            filterValue.some(
-              (temperament) =>
-                dog.temperaments &&
-                dog.temperaments.includes(temperament.trim())
-            ))
-        );
-      });
-
-      return {
-        ...state,
-        filteredDogs: dogsFilter,
-      };
-
-    case FILTER_ORIGIN:
-      const originValue = payload.toLowerCase();
-      let filterDogs = [];
-
-      if (originValue === "database") {
-        filterDogs = state.dogs.filter((dog) => {
-          return typeof dog.id === "string" && dog.id.includes("-");
-        });
-      } else if (originValue === "api") {
-        filterDogs = state.dogs.filter((dog) => {
+      case FILTER_TEMPERAMENT:
+        let filterValue;
+        if (payload === "all") {
+          filterValue = undefined;
+        } else if (typeof payload === "string") {
+          filterValue = payload.split(",");
+        }
+        const dogsFilter = state.dogs.filter((dog) => {
           return (
-            typeof dog.id === "number" ||
-            (typeof dog.id === "string" && !dog.id.includes("-"))
+            !filterValue ||
+            (dog.temperaments &&
+              filterValue.some(
+                (temperament) =>
+                  dog.temperaments &&
+                  dog.temperaments.includes(temperament.trim())
+              ))
           );
         });
-      } else {
-        filterDogs = state.dogs;
-      }
+      
+        return {
+          ...state,
+          filteredDogs: dogsFilter,
+        };
+      
 
-      return {
-        ...state,
-        filteredDogs: filterDogs,
-      };
+      
+
+
+      case FILTER_ORIGIN:
+        const originValue = payload.toLowerCase();
+        let filterDogs = [];
+      
+        if (originValue === "database") {
+          filterDogs = state.dogs.filter((dog) => typeof dog.id === "string" && dog.id.includes("-"));
+        } else if (originValue === "api") {
+          filterDogs = state.dogs.filter((dog) => typeof dog.id === "number" || (typeof dog.id === "string" && !dog.id.includes("-")));
+        } else {
+          filterDogs = state.dogs;
+        }
+      
+        return {
+          ...state,
+          filteredDogs: filterDogs,
+        };
 
     case ORDER_BY_NAME:
       const sortedDogs = [...state.filteredDogs].sort((a, b) => {
@@ -100,7 +101,6 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         filteredDogs: sortedDogs,
-        orderBy: "name",
       };
 
     case ORDER_BY_WEIGHT:
